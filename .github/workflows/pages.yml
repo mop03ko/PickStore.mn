@@ -1,4 +1,4 @@
-name: Deploy Pick Store to GitHub Pages
+name: Verify and deploy Pick Store
 on:
   push:
     branches: [main]
@@ -11,31 +11,54 @@ concurrency:
   group: pages
   cancel-in-progress: false
 jobs:
-  deploy:
+  verify:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Check JavaScript
         run: node --check app.js
       - name: Validate storefront
         run: node tests/validate.mjs
-      - name: Set up Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Install browser test runner
+        run: |
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+      - name: Browser checks and previews
+        run: node tests/browser.mjs
       - name: Prepare static files
         run: |
           mkdir _site
           cp index.html styles.css app.js _site/
           cp -r assets _site/
           touch _site/.nojekyll
-      - name: Upload artifact
+      - name: Save preview screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pick-store-previews
+          path: preview/
+          if-no-files-found: ignore
+      - name: Save downloadable website
+        uses: actions/upload-artifact@v4
+        with:
+          name: pick-store-website
+          path: _site/
+          include-hidden-files: true
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

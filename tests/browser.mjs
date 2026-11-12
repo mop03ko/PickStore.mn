@@ -1,0 +1,75 @@
+import {chromium} from 'playwright';
+import http from 'node:http';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root=process.cwd();
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml'};
+const server=http.createServer(async(req,res)=>{
+ try{
+  const url=new URL(req.url,'http://localhost');
+  const name=decodeURIComponent(url.pathname==='/'?'/index.html':url.pathname);
+  const file=path.resolve(root,'.'+name);
+  if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}
+  res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');
+  res.end(await fs.readFile(file));
+ }catch{res.writeHead(404);res.end('Not found');}
+});
+await new Promise(resolve=>server.listen(4173,'127.0.0.1',resolve));
+let browser;
+try{
+ await fs.mkdir('preview',{recursive:true});
+ browser=await chromium.launch();
+ const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
+ await page.evaluate(()=>document.fonts.ready);
+ assert.equal(await page.locator('.product-card').count(),12);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Desktop overflow');
+ await page.screenshot({path:'preview/pick-store-desktop.png',fullPage:true});
+ await page.locator('.tabs [data-filter="Gaming"]').click();
+ assert.equal(await page.locator('.product-card').count(),3);
+ await page.locator('#search').fill('macbook');
+ await page.locator('#search-form button').click();
+ assert.equal(await page.locator('.product-card').count(),1);
+ await page.locator('.save-product').click();
+ await page.locator('.add-button').click();
+ assert.equal(await page.locator('#cart-count').textContent(),'1');
+ await page.locator('.product-name').click();
+ assert.equal(await page.locator('#product-dialog').evaluate(x=>x.open),true);
+ await page.keyboard.press('Escape');
+ await page.locator('#cart-button').click();
+ await page.locator('[data-delta="1"]').click();
+ assert.equal(await page.locator('.quantity span').textContent(),'2');
+ assert.match(await page.locator('.cart-total').textContent(),/7.?780.?000/);
+ await page.locator('[data-checkout]').click();
+ assert.equal(await page.locator('#info-dialog').evaluate(x=>x.open),true);
+ await page.keyboard.press('Escape');
+ await page.reload({waitUntil:'networkidle'});
+ assert.equal(await page.locator('#cart-count').textContent(),'2');
+ await page.locator('#saved-button').click();
+ assert.equal(await page.locator('.product-card').count(),1);
+ await page.locator('.save-product').click();
+ assert.equal(await page.locator('#empty-state').isVisible(),true);
+ await page.locator('#empty-reset').click();
+ await page.locator('[data-brand="DJI"]').click();
+ assert.equal(await page.locator('.product-card').count(),2);
+ await page.locator('#clear-filters').click();
+ await page.locator('#sort').selectOption('price-asc');
+ assert.match(await page.locator('.product-name').first().textContent(),/Everyday/);
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Mobile overflow');
+ await page.screenshot({path:'preview/pick-store-mobile.png',fullPage:true});
+ await page.locator('#menu-toggle').click();
+ assert.equal(await page.locator('#mega-menu').isVisible(),true);
+ await page.locator('#mega-menu [data-category="Work"]').click();
+ assert.equal(await page.locator('.product-card').count(),3);
+ assert.equal(await page.locator('#mega-menu').isVisible(),false);
+ await page.setViewportSize({width:320,height:720});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Small mobile overflow');
+ assert.deepEqual(errors,[]);
+ const failedImages=await page.locator('img[data-fallback]').count();
+ console.log('PASS: desktop/mobile layout, search, categories, favorites, cart quantity and total, checkout disclosure, reload persistence, brand filter, price sorting, mobile menu and no JS errors.');
+ console.log('Representative images requiring fallback: '+failedImages);
+}finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
