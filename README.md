@@ -1,18 +1,36 @@
 # Pick Store
 
-Responsive Mongolian storefront inspired by large electronics retailers, with Pick Store’s supplied SVG identity.
+Mongolian ecommerce frontend with the supplied Pick Store SVG identity. Static HTML/CSS/JavaScript, published via GitHub Pages.
 
-## Preview
-Open `index.html` or serve this directory with any static web server. No build or dependencies required.
+## Pages
 
-## Features
-Four departments (Hobby, Lifestyle, Gaming, Work), search, category and brand filtering, sorting, product details, saved products, cart quantities and local persistence. Mobile navigation and keyboard-accessible dialogs.
+- index.html — Home
+- products.html — All products, search, brand/category/price filtering and sorting
+- categories.html — Four departments
+- category.html?category=Work — Category collection
+- product.html?id=1 — Product detail, quantity and related products
+- wishlist.html — Saved products
+- cart.html — Cart quantities, removal and totals
+- checkout.html — Validated demo checkout
+- order.html?id=... — Demo order confirmation/detail
+- profile.html — Browser-local profile
+- addresses.html — Browser-local delivery address
+- orders.html — Browser-local demo order history
+- help.html — FAQ
+- about.html — Brand story
+- contact.html — Contact information placeholder
+- privacy.html — Current demo data handling
 
-## Demo data
-Product prices, promotions and availability are sample data, not live offers. Images are representative photographs from Unsplash. Checkout displays a clear prototype notice and does not collect payment or submit orders. No account service, payment integration or inventory backend is connected.
+## Data and limitations
 
-## Deployment
-GitHub Pages workflow included. If Pages has not yet been enabled, choose Settings → Pages → Source → GitHub Actions, then run the Pages workflow.
+Products, images, prices and promotions are demo data. Profile, address, wishlist, cart and demo orders are stored only in localStorage on the current browser. No authentication, payment, server submission or inventory system is connected. Checkout prominently explains that no merchant order or payment is created. Do not enter real personal information on shared devices. No passwords/card details are collected.
 
-## Brand
-`assets/pick-store.svg` preserves the supplied `Asset 1.svg` geometry. Brand red: #EC1F2F.
+## Run and validate
+
+Serve this directory using a static server. No build is required.
+
+- `node --check app.js`
+- `node tests/validate.mjs`
+- Install Playwright and Chromium, then `node tests/browser.mjs`
+
+CI verifies all page shells and internal links, real Chromium navigation, filtering, local persistence, checkout validation, order history, and responsive layouts at 1440, 390 and 320 px. It saves desktop/mobile screenshots and publishes root HTML pages with shared assets.

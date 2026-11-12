@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ec1f2f"><meta name="description" content="Pick Store — Hobby, Lifestyle, Gaming, Work. Өдөр бүрийг илүү болгох технологи, таны сонголт.">
+<title>Бүтээгдэхүүн | Pick Store</title>
+<link rel="icon" href="assets/pick-store.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
+</head>
+<body data-page="product">
+<a class="skip" href="#main">Үндсэн хэсэг рүү</a>
+<div class="announcement"><span>HOBBY. LIFESTYLE. GAMING. WORK.</span><span>Таны сонирхол. Таны ертөнц. <b>YOUR NEXT PICK.</b></span></div>
+<header class="header">
+<div class="header-main wrap">
+<a href="./" class="logo" aria-label="Pick Store нүүр хуудас"><img src="assets/pick-store.svg" alt="Pick Store" width="112" height="71"></a>
+<button class="menu-toggle icon-button" id="menu-toggle" aria-label="Ангиллын цэс" aria-expanded="false" aria-controls="mega-menu"><svg><use href="#i-menu"/></svg><span>Цэс</span></button>
+<form id="search-form" class="search" role="search"><input type="search" id="search" placeholder="Таны дараагийн сонголт юу вэ?" aria-label="Бүтээгдэхүүн хайх" autocomplete="off"><button aria-label="Хайх"><svg><use href="#i-search"/></svg></button></form>
+<div class="header-actions"><a href="profile.html" class="icon-button profile-link" aria-label="Миний профайл"><svg><use href="#i-user"/></svg><span>Профайл</span></a><a href="wishlist.html" id="saved-button" class="icon-button" aria-label="Хадгалсан бүтээгдэхүүн"><svg><use href="#i-heart"/></svg><span>Хадгалсан</span><b id="saved-count" class="small-count" hidden>0</b></a><a href="cart.html" id="cart-button" class="icon-button"><span class="cart-icon"><svg><use href="#i-bag"/></svg><b id="cart-count">0</b></span><span>Миний сагс</span></a></div>
+</div>
+<div class="nav-shell"><nav class="nav wrap" aria-label="Үндсэн цэс"><div class="nav-left"><a class="categories-nav" href="categories.html">Ангиллууд</a><button data-category="all" class="nav-all"><svg><use href="#i-grid"/></svg>Бүх бүтээгдэхүүн</button><button data-category="Hobby">Hobby</button><button data-category="Lifestyle">Lifestyle</button><button data-category="Gaming">Gaming</button><button data-category="Work">Work</button></div><div class="nav-right"><button data-mode="deals">Онцлох санал <span class="nav-dot"></span></button><button data-mode="new">Шинэ ирсэн</button></div></nav></div>
+<div id="mega-menu" class="mega-menu" hidden><div class="wrap mega-content"><div><small>FIND YOUR PICK</small><h2>Та юунд дуртай вэ?</h2><p>Сонирхлоос эхэлсэн зөв сонголт.</p></div><button data-category="Hobby"><b>01 / Hobby</b><span>Камер, дрон, бүтээлч хэрэгсэл →</span></button><button data-category="Lifestyle"><b>02 / Lifestyle</b><span>Ухаалаг утас, аудио, гэр ахуй →</span></button><button data-category="Gaming"><b>03 / Gaming</b><span>Тоглоом, дагалдах хэрэгсэл →</span></button><button data-category="Work"><b>04 / Work</b><span>Компьютер, ажлын хэрэгсэл →</span></button></div></div>
+</header>
+<main id="main" class="commerce-main"><div class="wrap" id="page-content"></div><noscript><p class="wrap">Хуудсыг ашиглахын тулд JavaScript-ийг идэвхжүүлнэ үү.</p></noscript></main>
+<footer><div class="wrap footer-top"><div class="footer-brand"><img src="assets/pick-store.svg" width="112" height="71" alt="Pick Store"><p>Технологи, сонирхол, өдөр тутмын амьдрал.<br>Өөрийнхөөрөө сонго.</p></div><div><h3>Сонголтоо олох</h3><button data-category="Hobby">Hobby</button><button data-category="Lifestyle">Lifestyle</button><button data-category="Gaming">Gaming</button><button data-category="Work">Work</button></div><div><h3>Танд туслах</h3><a href="profile.html">Миний профайл</a><a href="orders.html">Миний захиалгууд</a><button data-info="about">Pick Store-ийн тухай</button><button data-info="delivery">Хүргэлт ба төлбөр</button><button data-info="privacy">Мэдээллийн нууцлал</button><button data-info="contact">Холбоо барих</button></div><div class="footer-message"><span class="eyebrow red">YOUR NEXT PICK.</span><h3>Зөвхөн хэрэгтэйг биш.<br>Дуртайгаа сонго.</h3><p>Улаанбаатар, Монгол</p></div></div><div class="wrap footer-bottom"><span>© 2026 Pick Store. Бүх эрх хуулиар хамгаалагдсан.</span><span>HOBBY / LIFESTYLE / GAMING / WORK</span></div></footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<svg xmlns="http://www.w3.org/2000/svg" class="svg-defs" aria-hidden="true"><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22v-2a8 8 0 0 1 16 0v2"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6l9-4Z"/><path d="m8 12 3 3 5-6"/></symbol></svg>
+</body></html>
