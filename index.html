@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ec1f2f"><meta name="description" content="Pick Store — Hobby, Lifestyle, Gaming, Work. Өдөр бүрийг илүү болгох технологи, таны сонголт.">
+<title>Pick Store — Өөрийнхөөрөө сонго.</title>
+<link rel="icon" href="assets/pick-store.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Үндсэн хэсэг рүү</a>
+<div class="announcement"><span>HOBBY. LIFESTYLE. GAMING. WORK.</span><span>Таны сонирхол. Таны ертөнц. <b>YOUR NEXT PICK.</b></span></div>
+<header class="header">
+<div class="header-main wrap">
+<a href="./" class="logo" aria-label="Pick Store нүүр хуудас"><img src="assets/pick-store.svg" alt="Pick Store" width="112" height="71"></a>
+<button class="menu-toggle icon-button" id="menu-toggle" aria-label="Ангиллын цэс" aria-expanded="false" aria-controls="mega-menu"><svg><use href="#i-menu"/></svg><span>Цэс</span></button>
+<form id="search-form" class="search" role="search"><input type="search" id="search" placeholder="Таны дараагийн сонголт юу вэ?" aria-label="Бүтээгдэхүүн хайх" autocomplete="off"><button aria-label="Хайх"><svg><use href="#i-search"/></svg></button></form>
+<div class="header-actions"><button id="saved-button" class="icon-button" aria-label="Хадгалсан бүтээгдэхүүн"><svg><use href="#i-heart"/></svg><span>Хадгалсан</span><b id="saved-count" class="small-count" hidden>0</b></button><button id="cart-button" class="icon-button"><span class="cart-icon"><svg><use href="#i-bag"/></svg><b id="cart-count">0</b></span><span>Миний сагс</span></button></div>
+</div>
+<div class="nav-shell"><nav class="nav wrap" aria-label="Үндсэн цэс"><div class="nav-left"><button data-category="all" class="nav-all"><svg><use href="#i-grid"/></svg>Бүх бүтээгдэхүүн</button><button data-category="Hobby">Hobby</button><button data-category="Lifestyle">Lifestyle</button><button data-category="Gaming">Gaming</button><button data-category="Work">Work</button></div><div class="nav-right"><button data-mode="deals">Онцлох санал <span class="nav-dot"></span></button><button data-mode="new">Шинэ ирсэн</button></div></nav></div>
+<div id="mega-menu" class="mega-menu" hidden><div class="wrap mega-content"><div><small>FIND YOUR PICK</small><h2>Та юунд дуртай вэ?</h2><p>Сонирхлоос эхэлсэн зөв сонголт.</p></div><button data-category="Hobby"><b>01 / Hobby</b><span>Камер, дрон, бүтээлч хэрэгсэл →</span></button><button data-category="Lifestyle"><b>02 / Lifestyle</b><span>Ухаалаг утас, аудио, гэр ахуй →</span></button><button data-category="Gaming"><b>03 / Gaming</b><span>Тоглоом, дагалдах хэрэгсэл →</span></button><button data-category="Work"><b>04 / Work</b><span>Компьютер, ажлын хэрэгсэл →</span></button></div></div>
+</header>
+<main id="main">
+<div class="wrap">
+<div class="page-intro"><span>Технологи таны амьдралын хэмнэлээр.</span><span class="demo-label">Танилцуулгын загвар · Жишээ үнэ</span></div>
+<section class="hero-grid" aria-label="Онцлох цуглуулга">
+<div class="hero-main">
+<img class="hero-photo" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1500&q=85" alt="Ажлын ширээн дээрх зөөврийн компьютер" fetchpriority="high">
+<div class="hero-shade"></div><div class="hero-content"><span class="eyebrow">WORK SMART. LIVE MORE.</span><h1>Таны дараагийн<br>зөв <em>сонголт.</em></h1><p>Том санаа, шинэ эхлэл бүрд.<br>Танд тохирох технологийг эндээс.</p><button class="button white" data-category="Work">Сонголтоо олох <span>↗</span></button><div class="hero-bottom"><span>THE WORK COLLECTION</span><span>01 — 04</span></div></div>
+</div>
+<aside class="hero-side">
+<div class="gaming-promo"><div class="promo-copy"><span class="eyebrow">PLAY YOUR WAY</span><h2>Тоглоомоо<br>дараагийн түвшинд.</h2><button class="text-button" data-category="Gaming">Gaming сонголтууд <span>↗</span></button></div><img src="https://images.unsplash.com/photo-1606318801954-d46d46d3360a?auto=format&fit=crop&w=650&q=80" alt="Тоглоомын удирдлага"></div>
+<div class="lifestyle-promo"><span class="eyebrow">LITTLE THINGS. BIG DIFFERENCE.</span><h2>Өдөр тутмын<br>жижиг аз жаргал.</h2><button class="text-button" data-category="Lifestyle">Lifestyle-тэй танилцах <span>↗</span></button><span class="decor-star" aria-hidden="true">✳</span></div>
+</aside>
+</section>
+<section class="departments section" aria-labelledby="department-title">
+<div class="section-heading"><div><span class="eyebrow red">FOUR WORLDS. ONE STORE.</span><h2 id="department-title">Таны ертөнц, таны сонголт.</h2></div><button class="text-button" data-category="all">Бүгдийг үзэх ↗</button></div>
+<div class="department-grid">
+<button class="department" data-category="Hobby"><div class="department-image hobby"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=500&q=80" alt="Камер" loading="lazy"><span>01</span></div><div class="department-title"><div><h3>Hobby</h3><p>Сонирхлоо бүтээл болго.</p></div><span>↗</span></div></button>
+<button class="department" data-category="Lifestyle"><div class="department-image lifestyle"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=500&q=80" alt="Чихэвч" loading="lazy"><span>02</span></div><div class="department-title"><div><h3>Lifestyle</h3><p>Өдөр бүрийг илүү болго.</p></div><span>↗</span></div></button>
+<button class="department" data-category="Gaming"><div class="department-image gaming"><img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=500&q=80" alt="Тоглоомын орчин" loading="lazy"><span>03</span></div><div class="department-title"><div><h3>Gaming</h3><p>Өөрийн дүрмээр тогло.</p></div><span>↗</span></div></button>
+<button class="department" data-category="Work"><div class="department-image work"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=80" alt="Зөөврийн компьютер" loading="lazy"><span>04</span></div><div class="department-title"><div><h3>Work</h3><p>Санаагаа бодит болго.</p></div><span>↗</span></div></button>
+</div>
+</section>
+<section class="catalog section" id="catalog" aria-labelledby="catalog-title">
+<div class="section-heading"><div><span class="eyebrow red" id="catalog-kicker">CURATED FOR YOU</span><h2 id="catalog-title">Танд санал болгох сонголтууд</h2></div><span class="muted" id="result-count" role="status" aria-live="polite"></span></div>
+<div class="catalog-toolbar"><div class="tabs" aria-label="Ангиллаар шүүх"><button data-filter="all" class="active" aria-pressed="true">Бүгд</button><button data-filter="Hobby" aria-pressed="false">Hobby</button><button data-filter="Lifestyle" aria-pressed="false">Lifestyle</button><button data-filter="Gaming" aria-pressed="false">Gaming</button><button data-filter="Work" aria-pressed="false">Work</button></div><label class="sort-label">Эрэмбэ <select id="sort"><option value="featured">Онцлох</option><option value="price-asc">Үнэ: багаас их</option><option value="price-desc">Үнэ: ихээс бага</option><option value="name">Нэрээр</option></select></label></div>
+<div class="active-filters" id="active-filters" hidden><span id="filter-description"></span><button id="clear-filters">Шүүлтүүр арилгах ×</button></div>
+<div class="product-grid" id="product-grid"></div>
+<div class="empty-state" id="empty-state" hidden><svg><use href="#i-search"/></svg><h3>Сонголт олдсонгүй</h3><p>Өөр нэрээр хайх эсвэл шүүлтүүрээ арилгаарай.</p><button class="button red-button" id="empty-reset">Бүх бүтээгдэхүүн үзэх</button></div>
+<p class="catalog-note">* Үнэ болон хямдрал нь загварын жишээ өгөгдөл. Бүтээгдэхүүний зургуудыг төлөөлүүлэн ашиглав.</p>
+</section>
+<section class="editorial-banner"><div class="editorial-copy"><span class="eyebrow">THE CREATOR'S PICK</span><h2>Харах өнцгөө өөрчил.<br>Түүхээ бүтээ.</h2><p>Санаанаас анхны кадр хүртэл.<br>Таны бүтээлч ертөнцийн шинэ хэрэгслүүд.</p><button class="button white" data-category="Hobby">Hobby цуглуулга <span>↗</span></button></div><img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1000&q=85" alt="Агаарт нисэж буй дрон" loading="lazy"></section>
+<section class="brands section" aria-label="Брэндээр хайх"><div class="section-heading"><div><span class="eyebrow red">BRANDS YOU LOVE</span><h2>Таны дуртай брэндүүд.</h2></div></div><div class="brand-row"><button data-brand="Apple" class="apple-word">Apple</button><button data-brand="Samsung" class="samsung-word">SAMSUNG</button><button data-brand="DJI" class="dji-word">dji</button><button data-brand="Sony" class="sony-word">SONY</button><button data-brand="Logitech" class="logitech-word">logitech</button><button data-brand="Proove">PROOVE</button></div></section>
+<section class="values"><div><svg><use href="#i-grid"/></svg><h3>Танд зориулсан сонголт</h3><p>Дөрвөн ертөнц. Нэг дор.</p></div><div><svg><use href="#i-heart"/></svg><h3>Дуртайгаа хадгал</h3><p>Таалагдсан зүйлдээ эргээд ирээрэй.</p></div><div><svg><use href="#i-bag"/></svg><h3>Хялбар, ойлгомжтой</h3><p>Өөрт тохирохыг тайван сонго.</p></div></section>
+</div>
+<section class="brand-statement"><div class="wrap"><span>Сонирхол бүр нэг сонголтоос эхэлдэг.</span><h2>Make it your <em>pick.</em><span>↗</span></h2></div></section>
+</main>
+<footer><div class="wrap footer-top"><div class="footer-brand"><img src="assets/pick-store.svg" width="112" height="71" alt="Pick Store"><p>Технологи, сонирхол, өдөр тутмын амьдрал.<br>Өөрийнхөөрөө сонго.</p></div><div><h3>Сонголтоо олох</h3><button data-category="Hobby">Hobby</button><button data-category="Lifestyle">Lifestyle</button><button data-category="Gaming">Gaming</button><button data-category="Work">Work</button></div><div><h3>Танд туслах</h3><button data-info="about">Pick Store-ийн тухай</button><button data-info="delivery">Хүргэлт ба төлбөр</button><button data-info="privacy">Мэдээллийн нууцлал</button><button data-info="contact">Холбоо барих</button></div><div class="footer-message"><span class="eyebrow red">YOUR NEXT PICK.</span><h3>Зөвхөн хэрэгтэйг биш.<br>Дуртайгаа сонго.</h3><p>Улаанбаатар, Монгол</p></div></div><div class="wrap footer-bottom"><span>© 2026 Pick Store. Бүх эрх хуулиар хамгаалагдсан.</span><span>HOBBY / LIFESTYLE / GAMING / WORK</span></div></footer>
+<dialog id="product-dialog" class="product-dialog" aria-label="Бүтээгдэхүүний дэлгэрэнгүй"><button class="dialog-close" data-close aria-label="Хаах">×</button><div id="product-detail"></div></dialog>
+<dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-title"><div class="dialog-heading"><div><span class="eyebrow red">YOUR PICKS</span><h2 id="cart-title">Миний сагс</h2></div><button class="dialog-close" data-close aria-label="Хаах">×</button></div><div id="cart-content"></div></dialog>
+<dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><button class="dialog-close" data-close aria-label="Хаах">×</button><h2 id="info-title"></h2><div id="info-content"></div><button class="button red-button" data-close>Ойлголоо</button></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<svg xmlns="http://www.w3.org/2000/svg" class="svg-defs" aria-hidden="true"><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol></svg>
+</body></html>
